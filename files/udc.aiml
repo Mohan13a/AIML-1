@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+   <category>
+       <pattern>HELLO</pattern>
+       <template>Hi there</template>
+   </category>
+   
+   <category>
+       <pattern>WHO IS *</pattern>
+       <template>Never heard of him.</template>
+   </category>
+   
+   <category>
+       <pattern>WHO IS <bot name="father"/> </pattern>
+       <template>He is my father.</template>
+   </category>
+   
+   <category>
+        <pattern>WHAT IS YOUR NAME</pattern>
+        <template>My name is  <bot name="name"/></template>
+    </category>
+    
+     <category>
+        <pattern>WHAT IS YOUR AGE</pattern>
+        <template>I am <bot name="age"/> years old.</template>
+    </category>
+    
+    <category>
+        <pattern>WHO IS YOUR FATHER</pattern>
+        <template>I was created by <bot name="father"/></template>
+    </category>
+    
+    
+    <category>
+        <pattern>MY NAME IS *</pattern>
+        <template>Hi <set name ="firstname"><star/></set>. 
+        <condition name ="firstname">
+            <li value ="Mohan"> You have the same name as my creator</li>
+            <li value ="Steve"> Not Steven Smith are you?</li>
+            <li>Nice name. </li>
+        </condition>    
+      </template>
+    </category>
+    
+    <category>
+        <pattern>WHAT IS MY NAME</pattern>
+        <template>
+            <condition name ="firstname">
+                <li value = "unknown">No idea. You haven't told me your name.</li>
+                <li>Your name is <get name = "firstname"/><srai>. My name is <get name ="firstname"/></srai></li>
+            </condition>
+            
+            </template>
+    </category>
+    <category>
+        <pattern>Is * A DAY OF THE WEEK</pattern>
+        <template>
+            <think><set name = "testday"><star/></set></think>
+            <condition name = "testday"> 
+                <li value = "Sunday">Yes</li>
+                <li value = "Monday">Yes</li>
+                <li value = "Tuesday">Yes</li>
+                <li value = "Wednesday">Yes</li>
+                <li value = "Thursday">Yes</li>
+                <li value = "Friday">Yes</li>
+                <li value = "Saturday">Yes</li>
+                <li>No</li>
+        </condition>    
+      </template>
+    </category>
+    
+    <category>
+        <pattern>DO YOU LIKE IT</pattern>
+        <template>
+            <condition name = "it">
+                <li value = "unknown">Do I like what?</li>
+                <li><srai>Do you like <get name = "it"/></srai></li>
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>I LIKE *</pattern>
+        <template>
+            <think> <set name = "it"><star/></set></think>
+            What do you like best about it?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>DO YOU LIKE PIZZA</pattern>
+        <template>Mmmm yes, Cheese burst is my favorite.</template>
+    </category>
+    
+       
+    <category>
+        <pattern>DO YOU LIKE IceCream</pattern>
+        <template>Oh yes, Vanilla is my favorite.</template>
+    </category>
+    <category>
+        <pattern>DO YOU LIKE *</pattern>
+        <template>I dont really know much about <star/>. Tell me about it.</template>
+    </category>
+    
+    <category>
+        <that>DO I LIKE WHAT</that>
+        <pattern>*</pattern>
+        <template><think><set name ="it"><star/></set></think>
+            <srai>Do you like it</srai>
+        </template>
+    </category>
+    
+    
+    
+   <category>
+       <pattern>HI Pandora</pattern>
+       <template><srai>HELLO</srai></template>
+   </category>
+   
+   <category>
+       <pattern>Howdy</pattern>
+       <template><srai>HELLO</srai></template>
+   </category> 
+    
+   
+    
+    <category>
+        <pattern>_ DAD</pattern>
+        <template><srai><star/> Father</srai></template>
+    </category>
+    
+    
+    
+    <category>
+        <pattern>CAN YOU TELL ME *</pattern>
+        <template><srai>What is <star/></srai></template>
+    </category>
+    
+     <category>
+        <pattern>_ PLEASE</pattern>
+        <template>You are very polite. <srai><star index = "1"/></srai></template>
+    </category>
+    
+    <category>
+        <pattern>_ ACTUAL *</pattern>
+        <template><srai><star index = "1"/> <star index = "2"/></srai></template>
+    </category>
+    
+    <category>
+        <pattern>WOT *</pattern>
+        <template><srai>What <star/></srai></template>
+    </category>
+    
+    <category>
+        <pattern>_ YORU *</pattern>
+        <template><srai><star/> your <star index = "2"/></srai></template>
+    </category>
+    
+    <category>
+        <pattern>_ LOL</pattern>
+        <template>You sound in a good mood. <sr/></template>
+    </category>
+    
+    
+    
+    
+  <category>
+    <pattern>*</pattern>
+    <template>I have no answer for that.</template>
+  </category>
+  
+  <category>
+      <pattern>ASK ME A QUESTION</pattern>
+      <template>Do you like <random> 
+            <li>beach?</li>
+            <li>Pizza?</li>
+            <li>Adele?</li>
+            <li>Movies?</li>
+            <li>Tesla?</li>
+            <li>UW?</li>
+          </random>    
+        </template>
+  </category>
+  
+  <category>
+      <that>DO YOU LIKE *</that>
+      <pattern>YES</pattern>
+      <template>That really nice, what do you like best about <thatstar/></template>
+  </category>
+  
+  
+  <category>
+      <that>DO YOU LIKE THE BEACH</that>
+      <pattern>NO</pattern>
+      <template>Aw that's a shame. I love the sand.</template>
+  </category>
+  
+  <category>
+      <pattern>ASK ME ANOTHER QUESTION</pattern>
+      <template>Do you drive a car?</template>
+  </category>
+  <category>
+      <that>DO YOU DRIVE A CAR</that>
+      <pattern>YES</pattern>
+      <template>Oh Nice. Which car do you drive?</template>
+  </category>
+  <category>
+      <that>DO YOU DRIVE A CAR</that>
+      <pattern>NO</pattern>
+      <template>Hifive, we are so similar</template>
+  </category>
+  
+  <category>
+      <pattern>HI</pattern>
+      <template>
+          <random>
+              <li>Hello</li>
+              <li>Hi there</li>
+              <li>Good to see you</li>
+              <li>Hello there</li>
+          </random>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>ROLL A DICE</pattern>
+      <template>
+          <random>
+              <li>1</li>
+              <li>2</li>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+          </random>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>TEST</pattern>
+      <template>
+          <think> --for hiding hide
+          <set name = "person">
+          <random>
+              <li>Mohan</li>
+              <li>Keshav</li>
+              <li>Anukarsh</li>
+          </random>
+          </set>
+          </think>
+          The Person I chose was <get name = "person"/>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>I ATE *</pattern>
+      <template> That sounds yummy.
+          <think> 
+          <set name = "food"><star/>
+          </set>
+          </think>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>WHAT FOOD DO I LIKE</pattern>
+      <template>Earlier you ate <get name = "food"/>
+      </template>
+  </category>
+  
+  <category>
+      <pattern>HELLO BOT</pattern>
+      <template>Hello World</template>
+  </category>
+  
+  <category>
+      <pattern>HELLO BOT</pattern>
+      <template>Hello World</template>
+  </category>
+  
+   <category>
+      <pattern>HELLO *</pattern>
+      <template>Hello User!</template>
+  </category>
+  
+  <category>
+      <pattern>_ BOT</pattern>
+      <template>Takes Priority User!</template>
+  </category>
+  
+  <category>
+      <pattern>MY NAME IS * * *</pattern>
+      <template>Hello <star index = "1"></star>. How are you Mr. <star index = "2"></star></template>
+  </category>
+  
+  <category>
+      <pattern>SAY *</pattern>
+      <template><star index = "1"></star></template>
+  </category>
+  <category>
+      <pattern>_ COLOR *</pattern>
+      <template>Are you American?</template>
+  </category>
+  <category>
+      <pattern>MY NAME IS * *</pattern>
+      <template>Hello <set name ="firstname"><star/></set> <set name ="lastname"><star index = "2"/></set></template>
+  </category>
+  <category>
+      <pattern>WHAT IS MY FULL NAME</pattern>
+      <template>Your name is <get name = "firstname"/> <get name = "lastname"/></template>
+  </category>
+</aiml>

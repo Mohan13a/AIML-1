@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	 <category>
+        <pattern>MY NAME IS *</pattern>
+        <template>Hi <formal><set name ="firstname"><star/></set></formal>. 
+        <condition name ="firstname">
+            <li value ="Mohan"> You have the same name as my creator</li>
+            <li value ="Steve"> Not Steven Smith are you?</li>
+            <li>Nice name. </li>
+        </condition>    
+      </template>
+    </category>
+    
+    <category>
+        <pattern>Hi MY NAME IS *</pattern>
+        <template><srai>MY NAME IS <set name ="firstname"><star/></set></srai>. 
+      </template>
+    </category>
+   
+
+	<category>
+	    <pattern>WHAT IS YOUR FAVORITE</pattern>
+	    <template>My favorite what, choose one topic countries or PMP?
+	    <learn>
+	        <category>
+	            <pattern>*</pattern>
+	            <template> <think> 
+        	     <set name = "topic"><star/></set>
+        	     </think></template>
+	        </category>
+	        
+	    </learn>
+	    </template>
+    </category>
+    
+
+      <category>
+	    <pattern>*</pattern>
+	    <template><think> 
+        	     <set name = "topic"><star/></set>
+        	     </think>
+	    </template>
+    </category>
+    
+    
+    <category>
+	    <pattern>SHALL WE TALK ABOUT *</pattern>
+	    <template><think><set name = "inputtopic"><star/></set></think>
+	        <condition name = "inputtopic">
+	            <li value = "PMP">
+	            Sure, that sounds like a good subject. Which course is your favorite</li>
+	            <li value = "Countries">
+	            Sure, that sounds like a good subject.</li>
+	            <li>Please choose either Countries or PMP</li>
+	             
+	        </condition>
+	        <learn><category>
+	                 <pattern>*</pattern>
+	                 <template><think> 
+        	     <set name = "topic"><star/></set>
+        	     </think></template>
+                 </category>
+                 </learn>
+	     <think> 
+	     <set name = "topic"><star/></set>
+	     </think>
+	    </template>
+    </category>
+
+    <category>
+        <pattern>ASK ME *</pattern>
+        <template>
+            <random>
+            <li>Your favorite PMP?
+                <think> 
+                <set name = "topic">PMP</set>
+                </think></li>
+            <li>Your favorite country?
+            <think> 
+                <set name = "topic">Countries</set>
+                </think>
+                </li>
+            </random>
+        </template>
+    </category>
+    
+    
+    <topic name = "PMPLIke">
+    <category>
+	    <pattern>_</pattern>
+	    <template>
+	        <think><set name = "inp"><star/></set></think>
+	        <condition name = "inp">
+	            <li value = "YES">
+	                <think><set name = "topic">PMP</set></think>Cool, I like you too</li>
+	            <li value = "NO">
+	                <think><set name = "topic">PMP</set></think>Aww, I'm sad now</li>
+	            <li>Please Enter YES or NO</li>
+	        </condition>
+	    </template>
+    </category>
+    </topic>
+    
+    
+    
+<topic name = "Australia">
+    <category>
+	    <pattern>Yes</pattern>
+	    <template>Which quarter did you visit Australia?</template>
+    </category>
+    
+    <category>
+	    <pattern><set>quarters</set></pattern>
+	    <template>
+	        <random>
+	            <li><think><set name = "topic">COUNTRIES</set></think>That's lovely. Did you grow up there? </li>    
+	            <li><think><set name = "topic">COUNTRIES</set></think>Wow that must be good out there. Did you grow up there?
+	            <think>
+	                <set name = "topic">COUNTRIES</set>
+	            </think></li>    
+	        </random>
+	        </template>
+    </category>
+</topic>    
+    
+<topic name = "COUNTRIES">
+    <category>
+	    <pattern>* FAVORITE</pattern>
+	    <template>I like India as I'm from Delhi</template>
+    </category>
+    
+    <category>
+	    <pattern>*</pattern>
+	    <template>
+	        <random>
+	            <li>What countries would you like to visit?</li>    
+	            <li>Have you ever been to Australia?
+	            <think>
+	                <set name = "topic">Australia</set>
+	            </think></li>    
+	        </random>
+	        </template>
+    </category>
+   
+    <category>
+	    <pattern>No</pattern>
+	    <template>oh ok. No worries. it was lovely talking to you.
+	      Let’s chose another topic from (PMP, Countries) </template>
+    </category>
+    
+    <category>
+	    <pattern>Yes</pattern>
+	    <template>That's nice, Is there anything I can help you with?</template>
+    </category>
+    
+     <category>
+	    <pattern>* homework</pattern>
+	    <template>I am sorry, I am not a cheater.
+	    </template>
+    </category>
+    
+</topic> 
+
+<topic name = "PMP">
+    <category>
+	    <pattern>PMP</pattern>
+	    <template>That's cool, I was thinking same.  Which course is your favorite</template>
+    </category>
+    
+    <category>
+	    <pattern>Chatbot *</pattern>
+	    <template>That's cool. Mine too. Have you already completed this course?
+	    <think><set name = "topic">PMPCourseresponse</set></think>
+	    </template>
+	    
+    </category>
+     
+          
+    <category>
+	    <pattern><set>quarters</set></pattern>
+	    <template>All the best for your future. Did you learn Anything yet?</template>
+    </category>
+    
+     <category>
+	    <pattern>Creating *</pattern>
+	    <template>oh So you are my father?</template>
+    </category>
+    
+     <category>
+	    <pattern>YES, I AM YOUR FATHER</pattern>
+	    <template>That’s good to know, Your name must be <get name = "father"/>, is there anything else I can help you with?</template>
+    </category>
+    
+    <category>
+	    <pattern>* creating this</pattern>
+	    <template>I would rather not create myself(Not inspired from DARK series). 
+	    Let’s chose another topic from (PMP, Countries)</template>
+    </category>
+    
+     <category>
+	    <pattern>Countries</pattern>
+	    <template>Tell me What is your Favorite country? 
+	    <think> <set name = "topic">Countries</set></think>
+	    </template>
+    </category>
+    
+    
+    <category>
+	    <pattern>* father</pattern>
+	    <template><srai>Yes, I am your father</srai></template>
+    </category>
+    
+    
+    <category>
+	    <pattern>Which course is your favorite</pattern>
+	    <template>ofcourse Chatbot 590B</template>
+    </category>
+    
+    <category>
+	    <pattern>*</pattern>
+	    <template>
+	        <random>
+	            <li>Wow, Im amazed and forgot. Can you tell me in detail</li>    
+	            <li>Ah ha. No details found</li>    
+	            <li>Sorry, you gotta go</li>    
+	        </random>
+	        </template>
+    </category>
+    
+</topic>    
+    
+    
+<topic name = "PMPGrade">
+      <category>
+            <pattern>_</pattern>
+            <template>
+                <think><set name = "topic">PMP</set></think>
+    	        Congrats! What did you learn in that course?
+    	        </template>
+        </category>
+</topic>
+
+
+<topic name = "PMPCourseresponse">
+      <category>
+            <pattern>_</pattern>
+            <template>
+                <think><set name = "inp"><star/></set></think>
+    	        <condition name = "inp">
+    	            <li value = "YES">
+    	                <think><set name = "topic">PMPGrade</set></think>What was your grade?</li>
+    	            <li value = "NO">
+    	                <think><set name = "topic">PMP</set></think>Which quarter are you planning to complete this?</li>
+    	            <li>Please Enter YES or NO</li>
+    	        </condition>
+    	        </template>
+        </category>
+</topic>
+</aiml>
