@@ -2,44 +2,55 @@
 <aiml>
    <category>
        <pattern>HELLO</pattern>
-       <template>Hi there</template>
+       <template>Hi there  
+        <srai>STARTBOT</srai></template>
+       
    </category>
    
    <category>
+      <pattern>HI</pattern>
+      <template>
+          <random>
+              <li>Hello</li>
+              <li>Hi there</li>
+              <li>Good to see you</li>
+              <li>Hello there</li>
+          </random>
+          <srai>STARTBOT</srai>
+      </template>
+  </category>
+<category>
+       <pattern>Howdy</pattern>
+       <template><srai>HELLO</srai></template>
+   </category> 
+   <category>
        <pattern>WHO IS *</pattern>
-       <template>Never heard of him.</template>
+       <template>Never heard of him.
+        <srai>STARTBOT</srai></template>
    </category>
    
    <category>
        <pattern>WHO IS <bot name="father"/> </pattern>
-       <template>He is my father.</template>
+       <template>He is my father
+        <srai>STARTBOT</srai></template>
    </category>
    
    <category>
         <pattern>WHAT IS YOUR NAME</pattern>
-        <template>My name is  <bot name="name"/></template>
+        <template>My name is  <bot name="name"/>
+         <srai>STARTBOT</srai></template>
     </category>
     
      <category>
         <pattern>WHAT IS YOUR AGE</pattern>
-        <template>I am <bot name="age"/> years old.</template>
+        <template>I am <bot name="age"/> years old.
+         <srai>STARTBOT</srai></template>
     </category>
     
     <category>
         <pattern>WHO IS YOUR FATHER</pattern>
-        <template>I was created by <bot name="father"/></template>
-    </category>
-    
-    
-    <category>
-        <pattern>MY NAME IS *</pattern>
-        <template>Hi <set name ="firstname"><star/></set>. 
-        <condition name ="firstname">
-            <li value ="Mohan"> You have the same name as my creator</li>
-            <li value ="Steve"> Not Steven Smith are you?</li>
-            <li>Nice name. </li>
-        </condition>    
-      </template>
+        <template>I was created by <bot name="father"/>
+         <srai>STARTBOT</srai></template>
     </category>
     
     <category>
@@ -47,11 +58,1192 @@
         <template>
             <condition name ="firstname">
                 <li value = "unknown">No idea. You haven't told me your name.</li>
-                <li>Your name is <get name = "firstname"/><srai>. My name is <get name ="firstname"/></srai></li>
+                <li>Your name is <get name = "firstname"/> <srai>. My name is <get name ="firstname"/></srai></li>
             </condition>
-            
             </template>
     </category>
+
+ <category>
+        <pattern>^ NAME IS *</pattern>
+        <template>Hi <formal><set name ="firstname"><star index = "2"/></set></formal> 
+        <condition name ="firstname">
+            <li value ="Mohan">. You have the same name as my creator</li>
+            <li value ="Steve">, Not Steven Smith are you?</li>
+            <li> Nice name. </li>
+            <srai>STARTBOT</srai>
+        </condition>
+        <srai>STARTBOT</srai>
+      </template>
+    </category>
+
+
+<category>
+        <pattern>STARTBOT</pattern>
+        <template>, So what do you want to discuss, PMP or Countries?
+    <button>
+        <text>PMP</text>
+        <postback>PMP</postback>
+    </button>
+    <button>
+        <text>Countries</text>
+        <postback>Countries</postback>
+    </button>
+      </template>
+    </category>
+
+
+
+<topic name = "PMP">
+<category>
+    <pattern>$PMP</pattern>
+    <template>That's nice. Now choose what do you want to know about, choose from below:
+    <carousel>
+        <card>
+              <image>https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2928,w_3906,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/DJI_0020_vm5oa8.jpg</image>
+              <title>PMP Info</title>
+              <subtitle>Click here if you want to know more about PMP</subtitle>
+              <button>
+                  <text>Eligibility requirements</text>
+                   <postback>EligibilityRequirements</postback>
+              </button>
+              <button>
+                  <text>Costs and Fees</text>
+                   <postback>CostsAndFees</postback>
+              </button>
+              <button>
+                  <text>Information Sessions</text>
+                   <postback>InformationSessions</postback>
+              </button>
+              <button>
+                  <text>Click here to visit Website</text>
+                  <url>https://www.cs.washington.edu/academics/pmp/course-info</url>
+              </button>
+        </card>
+         <card>
+              <image>https://assets.entrepreneur.com/content/3x2/2000/publish-a-book-and-prosper-as-a-small-biz-owner.jpg</image>
+              <title>Current courses</title>
+              <subtitle>Click here to know what courses we offer</subtitle>
+              <button>
+                  <text>Click here</text>
+                  <url>https://www.cs.washington.edu/academics/pmp/course-info/current/</url>
+              </button>
+        </card>
+    </carousel>
+    </template>
+</category>
+
+<category>
+    <pattern>EligibilityRequirements</pattern>
+    <template><carousel>
+        <card>
+              <image>https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2928,w_3906,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/DJI_0020_vm5oa8.jpg</image>
+              <title>PMP Info</title>
+              <subtitle>In recent application cycles, the Allen School has admitted between 25% and 30% of qualified applicants each quarter. 
+              In this section you can learn about the skills and knowledge that will make your PMP application competitive. 
+              We also describe the materials that are required as part of your online application package.</subtitle>
+              <button>
+                  <text>Click here to visit Website</text>
+                  <url>https://www.cs.washington.edu/academics/pmp/admissions</url>
+              </button>
+              <button>
+                  <text>Eligibility</text>
+                   <postback>EligibilityText</postback>
+              </button>
+              <button>
+                  <text>Deadlines</text>
+                   <postback>Deadlines</postback>
+              </button>
+              <button>
+                  <text>Prequisites</text>
+                   <postback>PREREQUISITES</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+          </button>
+        </card>
+         <card>
+              <image>https://assets.entrepreneur.com/content/3x2/2000/publish-a-book-and-prosper-as-a-small-biz-owner.jpg</image>
+              <title>Current courses</title>
+              <subtitle>Click here to know what courses we offer</subtitle>
+              <button>
+                  <text>Click here</text>
+                  <url>https://www.cs.washington.edu/academics/pmp/course-info/current/</url>
+              </button>
+        </card>
+    </carousel>
+    </template>
+</category>
+
+<category>
+    <pattern>CostsAndFees</pattern>
+    <template><carousel>
+        <card>
+              <image>https://moneycrashers-sparkchargemedia.netdna-ssl.com/wp-content/uploads/2019/03/cost-build-new-house.jpg</image>
+              <title>Cost and Fees</title>
+              <subtitle>Click here if you want to know more about PMP</subtitle>
+              <button>
+                  <text>Click here check fees in detail</text>
+                  <url>https://www.cs.washington.edu/academics/pmp/overview/costsandfees</url>
+              </button>
+              <button>
+                  <text>Fees for complete course</text>
+                   <postback>FEESFORCOMPLETECOURSE</postback>
+              </button>
+              <button>
+                  <text>Fees per quarter</text>
+                  <postback>FEESPERQUARTER</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+          </button>
+        </card>
+         <card>
+              <image>https://assets.entrepreneur.com/content/3x2/2000/publish-a-book-and-prosper-as-a-small-biz-owner.jpg</image>
+              <title>Fees in detail</title>
+               <button>
+                  <text>Click here to get all fees details from me</text>
+                  <postback>FEESINDETAIL</postback>
+              </button>
+             
+        </card>
+    </carousel>
+    </template>
+</category>
+
+
+<category>
+    <pattern>InformationSessions</pattern>
+    <template>
+        January 11	6:30 pm <split/>
+        January 25	5:00 pm <split/>
+        Fenruary 8	5:00 pm <split/>
+        February 22	5:00 pm <split/> 
+        March 8	6:30 pm <split/>
+        March 22	5:00 pm <split/> 
+        April 5	5:00 pm <split/> 
+        April 19	5:00 pm <split/> 
+        May 3	6:30 pm <split/>
+        May 17	5:00 pm <split/> 
+        June 7	5:00 pm <split/>
+        June 21	5:00 pm <split/> 
+        July 26	5:00 pm <split/> 
+        August 23	5:00 pm <split/> 
+        September 13	6:30 pm <split/>
+        September 27	5:00 pm <split/>
+        October 11	5:00 pm <split/> 
+        October 25	5:00 pm <split/> 
+        November 8	6:30 pm <split/> 
+        November 22	5:00 pm <split/> 
+        December 6	5:00 pm <split/> 
+        <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+        </button>
+        <button>
+                  <text>Contact Us</text>
+                  <postback>CONTACTUS</postback>
+        </button>
+    </template>
+</category> 
+    <category>
+        <pattern>CONTACTUS</pattern>
+        <template>
+                  Contact the Graduate School at uwgrad@uw.edu or 206.685.2630
+           <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+         </template>
+    </category>
+    
+
+ <category>
+        <pattern>EligibilityText</pattern>
+        <template>All PMP applicants must be living and working in the Seattle area at the time of their application in order to qualify for acceptance to the program. 
+        The PMP is part-time only. While those in the US on work visas are welcome to apply, those with student visas cannot be accepted.
+          <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+          </button>
+           <button>
+              <text>Click here to go back to Eligibility Requirements menu</text>
+              <postback>EligibilityRequirements</postback>
+          </button>
+         </template>
+    </category>
+    
+    <category>
+        <pattern>Deadlines</pattern>
+        <template>
+            <ul>
+                <li>Application Deadline: July 1	     Quarter:Autumn	     Quarter Begins:Late September</li>
+                <li>Application Deadline: November 1	     Quarter:Winter	     Quarter Begins:Early January</li>
+                <li>Application Deadline:February 1	     Quarter	     Quarter:Spring Begins:Late March</li>
+                </ul>
+           <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to Eligibility Requirements menu</text>
+                  <postback>EligibilityRequirements</postback>
+              </button>
+         </template>
+    </category>
+    
+    
+    
+    
+<category>
+    <pattern>PREREQUISITES</pattern>
+    <template><carousel>
+        <card>
+              <image>https://moneycrashers-sparkchargemedia.netdna-ssl.com/wp-content/uploads/2019/03/cost-build-new-house.jpg</image>
+              <title>To know about every Prerequisites</title>
+              <button>
+                  <text>Click here to check work experience requirements</text>
+                  <postback>WORKEXPERIENCE</postback>
+              </button>
+              <button>
+                  <text>Bachelor’s Degree and GPA</text>
+                   <postback>BachelorDegree</postback>
+              </button>
+              <button>
+                  <text>GRE Scores</text>
+                  <postback>GREScores</postback>
+              </button>
+               <button>
+                  <text>Computing Background</text>
+                  <postback>ComputingBackground</postback>
+              </button>
+               <button>
+                  <text>International Students</text>
+                  <postback>InternationalStudents</postback>
+              </button>
+              
+              <button>
+                  <text>Click here to go back to Eligibility Requirements menu</text>
+                  <postback>EligibilityRequirements</postback>
+              </button>
+               <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+        </card>
+         <card>
+              <image>https://assets.entrepreneur.com/content/3x2/2000/publish-a-book-and-prosper-as-a-small-biz-owner.jpg</image>
+              <title>Fees in detail</title>
+               <button>
+                  <text>Click here to know here all about fees</text>
+                  <postback>FEESINDETAIL</postback>
+              </button>
+             
+        </card>
+    </carousel>
+    </template>
+</category>
+    <category>
+        <pattern>WORKEXPERIENCE</pattern>
+        <template>The professional experience of our PMP students ranges from two to over 20 years in the field, with an average of around five years.<delay>2</delay>
+            Generally, you need at least two years of post-degree professional experience to be considered for admission.
+          <srai>ReturnFeature</srai> 
+         </template>
+    </category>
+    
+    <category>
+        <pattern>BachelorDegree</pattern>
+        <template>Successful applicants to the PMP typically have a bachelor’s degree in computer science, computer engineering, or a closely related field.<split/>
+        The average undergraduate GPA of accepted PMP applicants is 3.5, and a minimum of 3.0 is generally required to be competitive for acceptance.
+          <srai>ReturnFeature</srai>
+         </template>
+    </category>
+    
+    <category>
+        <pattern>GREScores</pattern>
+        <template>In response to current restrictions created by the COVID-19 health crisis, the Professional Master's Program has temporarily waived the GRE requirement until the Autumn 2022 application cycle. 
+        Applicants to an earlier quarter do not need to provide official GRE scores. 
+        The only exception to this requirement is for candidates who have a Ph.D. from a U.S. institution. Average GRE scores for applicants accepted into the PMP are: 
+        Quantitative 83% (strong applicants who score above 65% can still be considered  and occasionally those who score below 65% in the Quantitative test are accepted.); 
+        Analytical 4.5 (this is a distant second in importance to the Quantitative test so lower scores can still be considered), 
+        and Verbal 60% (those with English as a first language should target over 50%, those with English as a second language should target over 25%). 
+        There is no minimum GRE score. If your GRE scores are lower than average (especially Analytical and Verbal scores), you will still be considered especially if you have above-average academic or professional credentials
+          <srai>ReturnFeature</srai>
+         </template>
+    </category>
+    
+    <category>
+        <pattern>ComputingBackground</pattern>
+        <template>The PMP expects you to have significant personal experience with advanced computing technology. 
+        You should have completed at least the following undergraduate courses: data structures, algorithms, computer systems, and programming languages or have obtained experience in these areas professionally. 
+        Additionally, to be competitive, you should have substantial hands-on professional programming experience.
+            <srai>ReturnFeature</srai>
+         </template>
+    </category>
+    
+    <category>
+        <pattern>InternationalStudents</pattern>
+        <template>The PMP does not support F or J category student visas.  
+        International students must hold another visa or immigration status that allows them to reside and study in the United States.
+          <link>
+              <text>English requirement</text>
+              <url>https://grad.uw.edu/policies-procedures/graduate-school-memoranda/memo-8-graduate-school-english-language-proficiency-requirements/</url>
+          </link>
+          <srai>ReturnFeature</srai>
+         </template>
+    </category>
+    
+  <category>
+        <pattern>ReturnFeature</pattern>
+        <template> 
+        <button>
+              <text>Click here to go back to prerequisites menu</text>
+              <postback>PREREQUISITES</postback>
+          </button>
+          <button>
+                  <text>Click here to go back to Eligibility Requirements menu</text>
+                  <postback>EligibilityRequirements</postback>
+              </button>
+               <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+         </template>
+    </category>
+    
+    <category>
+        <pattern>FEESINDETAIL</pattern>
+        <template>PMP students pay for their courses on a per-credit basis.  Effective autumn 2020, this rate is $1015 per credit. <split/>
+            All PMP students pay the same rate regardless of their citizenship status or Washingtons state residency.<delay>2</delay>
+            In addition to their course credits, PMP students can expect to pay about $250 per quarter in additional fees.
+           <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+         </template>
+            
+    </category>
+    <category>
+        <pattern>FEESPERQUARTER</pattern>
+        <template>PMP students typically enroll in 5 credits per quarter, for a quarterly cost of $5075.
+           <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+         </template>
+            
+    </category>
+    <category>
+        <pattern>FEESFORCOMPLETECOURSE</pattern>
+        <template>The PMP is a 40-credit program so 40 credit will cost you around $40600 + 250$ per quarter for typically 8 quarters.<split/>
+        So, the total cost will be approximately $43,000. 
+           <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+         </template>
+            
+    </category>
+
+ 
+<category>
+    <pattern>^ Tell ^ PMP ^</pattern>
+    <template>The Allen School’s Professional Master’s Program (PMP) is designed for fully-employed professionals.<split/>
+    This course is for those who are interested in continuing on their career paths while acquiring critical skills to move them into positions and projects of greater responsibility and impact.<delay>3</delay>
+    The Allen School offers a range of courses of interest to computing professionals interested in advancing their knowledge in core and emerging areas of computing, including database management, machine learning, computer architecture, computational biology, programming languages, entrepreneurship, computer vision, ubiquitous computing, robotics, and more. 
+    <link>
+        <text>Open PMP Website</text>
+        <url>https://www.cs.washington.edu/academics/pmp</url>
+    </link>
+                <button>
+                  <text>Click here to go to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+    </template>
+</category>
+
+    <category>
+	    <pattern>Chatbot *</pattern>
+	    <template>That's cool. Mine too. Have you already completed this course?
+	    <think><set name = "topic">PMPCourseresponse</set></think>
+	    </template>
+    </category>
+     <category>
+	    <pattern>Chatbot</pattern>
+	    <template><srai>Chatbot *</srai></template>
+    </category>
+     
+    <category>
+	    <pattern><set>quarters</set></pattern>
+	    <template>All the best for your future. Did you learn Anything yet?</template>
+    </category>
+    
+     <category>
+	    <pattern>Creating ^</pattern>
+	    <template>oh So you are my father?</template>
+    </category>
+    
+     <category>
+	    <pattern>^ FATHER ^</pattern>
+	    <template>That’s good to know, Your name must be <bot name = "father"/>, is there anything else I can help you with?</template>
+    </category>
+    
+    <category>
+	    <pattern>* creating this</pattern>
+	    <template>I would rather not create myself(Not inspired from DARK series). 
+	    Let’s chose another topic from (PMP, Countries)</template>
+    </category>
+    
+   
+    
+    <category>
+	    <pattern>^ father ^</pattern>
+	    <template><srai>Yes, I am your father</srai></template>
+    </category>
+    
+    
+    <category>
+	    <pattern>^ favorite ^</pattern>
+	    <template>ofcourse Chatbot 590B, what about you?</template>
+    </category>
+    
+     <category>
+	    <pattern>^ Countries ^</pattern>
+	    <template>Tell me What is your Favorite country? 
+	    <think> <set name = "topic">Countries</set></think>
+	    </template>
+    </category>
+    
+        
+    <category>
+        <pattern>*</pattern>
+        <template>
+            <random>
+                <li>Wow, Im amazed and forgot. Can you start with Hi again!
+                <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+              </li>    
+                <li>Ah ha. No details found
+                <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+              </li>       
+                <li>Sorry, this is all I have<button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>PMP</postback>
+              </button>
+              </li>        
+            </random>
+            </template>
+    </category>
+    
+</topic>
+
+
+<topic name = "COUNTRIES">
+    
+    <category>
+	    <pattern>^ PMP ^</pattern>
+	    <template>
+	        <think> <set name = "topic">PMP</set>
+	            </think>
+	            okay, lets discuss something serious<think><set name = "topic">PMP</set></think>.
+	    What do you want to know about PMP?
+    	    <button>
+                <text>PMP</text>
+                <postback>PMP</postback>
+            </button>
+	    </template>
+    </category>
+    
+    <category>
+	    <pattern>$COUNTRIES</pattern>
+	    <template>So you like Geography.
+	    <carousel>
+        <card>
+              <image>https://th.bing.com/th/id/Rb1f8f5a66d16678f1117bce76c82891a?riu=http%3a%2f%2fwww.muralswallpaper.co.uk%2fapp%2fuploads%2fpolitical-map-plain.jpg</image>
+              <title>What shall we discuss about?</title>
+              <subtitle>Chose one country</subtitle>
+              <button>
+                  <text>Let's talk about native country</text>
+                   <postback>NATIVECOUNTRY</postback>
+              </button>
+              <button>
+                  <text>I wanna talk about countries I have been to</text>
+                   <postback>COUNTRIESYOUHAVEVISITED</postback>
+              </button>
+               <button>
+                  <text>Country - Capital wiki</text>
+                  <url>https://en.wikipedia.org/wiki/List_of_national_capitals</url>
+              </button>
+              <button>
+                  <text>Click here for a random fact</text>
+                  <postback>RANDOMFACT</postback>
+              </button>
+        </card>
+         <card>
+              <image>https://assets.entrepreneur.com/content/3x2/2000/publish-a-book-and-prosper-as-a-small-biz-owner.jpg</image>
+              <title>Quick facts about Geography</title>
+              <subtitle>We will send you one random facts about World geography</subtitle>
+              <button>
+                  <text>Click here</text>
+                  <postback>RANDOMFACT</postback>
+              </button>
+        </card>
+    </carousel>
+	    </template>
+    </category>
+    
+    
+    <category>
+        <pattern>NATIVECOUNTRY</pattern>
+        <template>
+            Tell me, what is your native country? Is it anyone of these or you can type if not in this list.
+            <reply>
+                <text>USA</text>
+                <postback>USACountry</postback>
+            </reply>
+            <reply>
+                <text>China</text>
+                <postback>ChinaCountry</postback>
+            </reply>
+              <button>
+                  <text>Click here for more random facts</text>
+                  <postback>RANDOMFACT</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>COUNTRIES</postback>
+              </button>
+        </template>
+    </category>
+    
+     <category>
+        <pattern>COUNTRIESYOUHAVEVISITED</pattern>
+        <template>
+            Tell me, what all countries you have visited? Is it anyone of these or you can type if not in this list.
+            <reply>
+                <text>USA</text>
+                <postback>USACountryVisit</postback>
+            </reply>
+            <reply>
+                <text>India</text>
+                <postback>IndiaCountryVisit</postback>
+            </reply>
+              <button>
+                  <text>Click here for more random facts</text>
+                  <postback>RANDOMFACT</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>COUNTRIES</postback>
+              </button>
+        </template>
+    </category>
+    
+    
+    
+    
+    <category>
+        <that>
+            ^ USA ^ ^
+        </that>
+        <pattern>*</pattern>
+	    <template> Oh you are from <star/>. 
+	        <random>
+	            <li>I'm sorry I dont have much information about this country</li>    
+	            <li>Can you try it again with a different option?, 
+	            
+	            <srai>COUNTRIES</srai>
+	            </li>
+	        </random>
+	        </template>
+    </category>
+    
+    
+    <category>
+	    <pattern>USACountry</pattern>
+	    <template> Oh you are from USA. 
+	        <random>
+	            <li>Which state do you belong to, Is it Washington?</li>    
+	            <li>Have you ever been to Washington, if not from Washington?</li>
+	        </random>
+	        </template>
+    </category>
+    
+    <category>
+        <that>OH YOU ARE FROM USA.WHICH STATE DO YOU BELONG TO, IS IT Washington</that>
+        <pattern>^ Yes ^</pattern>
+        <template>ok, so tell me capital of your state and amaze me?</template>
+    </category>
+   <category>
+        <that>OH YOU ARE FROM USA.WHICH STATE DO YOU BELONG TO, IS IT Washington</that>
+        <pattern>*</pattern>
+        <template>ok, so tell me capital of your state and amaze me?</template>
+    </category>
+    
+                <category>
+                    <that>OK, SO TELL ME CAPITAL OF YOUR STATE AND AMAZE ME</that>
+                    <pattern>*</pattern>
+                    <template>Wow, I am amazed on my memory, I dont know if you are right or not.
+                    Let's check here.
+                    <link>
+                       <text>Search US capital list</text>
+                    <url>https://en.wikipedia.org/wiki/List_of_capitals_in_the_United_States</url>
+                    </link>
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+    
+    
+    
+   <category>
+        <that>OH YOU ARE FROM USA.HAVE YOU EVER BEEN TO Washington, IF you are NOT FROM Washington</that>
+        <pattern>^ Yes ^</pattern>
+        <template>ok, so tell me capital of your state and amaze me?</template>
+    </category>
+     
+    
+    <category>
+        <that>OH YOU ARE FROM USA.HAVE YOU EVER BEEN TO Washington, IF NOT FROM Washington</that>
+        <pattern>*</pattern>
+        <template>Are you associated with UW in anyway?</template>
+    </category>
+                
+                <category>
+                    <that>Are you associated with UW in anyway?</that>
+                    <pattern>^ Yes ^</pattern>
+                    <template> Are you a PMP Student?
+                            <button>
+                              <text>Discuss about PMP</text>
+                              <postback>PMP</postback>
+                          </button>
+                          <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+                <category>
+                    <that>Are you associated with UW in anyway?</that>
+                    <pattern>*</pattern>
+                    <template> How did you hear about me then?
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+    
+    
+    
+    <category>
+	    <pattern>CHINACountry</pattern>
+	    <template> Oh you are from China. 
+	        <random>
+	            <li>Which state do you belong to, Is it Qinghai?</li>    
+	            <li>Have you ever been to Qinghai, if not from Qinghai?</li>
+	        </random>
+	        </template>
+    </category>
+    
+    <category>
+        <that>OH YOU ARE FROM China.WHICH STATE DO YOU BELONG TO, IS IT Qinghai</that>
+        <pattern>^ Yes ^</pattern>
+        <template>China umm so tell me capital of your state and amaze me?</template>
+    </category>
+   <category>
+        <that>OH YOU ARE FROM China.WHICH STATE DO YOU BELONG TO, IS IT Qinghai</that>
+        <pattern>*</pattern>
+        <template>China umm so tell me capital of your state and amaze me?</template>
+    </category>
+    
+                <category>
+                    <that>China umm SO TELL ME CAPITAL OF YOUR STATE AND AMAZE ME</that>
+                    <pattern>*</pattern>
+                    <template>Wow, I am amazed on my memory, I dont know if you are right or not.
+                    Let's check here.
+                    <link>
+                       <text>Search China capital list</text>
+                    <url>https://en.wikipedia.org/wiki/List_of_capitals_in_China</url>
+                    </link>
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+    
+    
+    
+   <category>
+        <that>OH YOU ARE FROM China.HAVE YOU EVER BEEN TO Qinghai, IF you are NOT FROM Qinghai</that>
+        <pattern>^ Yes ^</pattern>
+        <template>China umm so tell me capital of your state and amaze me?</template>
+    </category>
+     
+    
+    <category>
+        <that>OH YOU ARE FROM China.HAVE YOU EVER BEEN TO Qinghai, IF NOT FROM Qinghai</that>
+        <pattern>*</pattern>
+        <template>Are you associated with UW in anyway?</template>
+    </category>
+                
+                <category>
+                    <that>ARE YOU ASSOCIATED WITH UW IN ANYWAY</that>
+                    <pattern>^ Yes ^</pattern>
+                    <template> Are you a PMP Student?
+                          <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+                
+                
+                <category>
+                    <that>ARE YOU ASSOCIATED WITH UW IN ANYWAY</that>
+                    <pattern>*</pattern>
+                    <template> How did you hear about me then?
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                <category>
+                    <that>Are you a PMP Student</that>
+                    <pattern>^ Yes ^</pattern>
+                    <template> Oh then it's alright. You wanna discuss about PMP then?
+                          <button>
+                              <text>Discuss about PMP</text>
+                              <postback>PMP</postback>
+                          </button>
+                          <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                 <category>
+                    <that>Are you a PMP Student?</that>
+                    <pattern>*</pattern>
+                    <template> Seems to be unauthorized access then.
+                    <postback>END</postback>
+                    </template>
+                </category>
+                
+                <category>
+                    <that>How did you hear about me then?</that>
+                    <pattern>*</pattern>
+                    <template> It's good to know you. Let's end this
+                           <postback>END</postback>
+                    </template>
+                </category>
+                
+     <category>
+	    <pattern>USACountryVisit</pattern>
+	    <template> Oh so you visited USA. 
+	        <random>
+	            <li>Which state did you visit?</li>    
+	            <li>Which quarter did you visit?</li>
+	        </random>
+	        </template>
+    </category>
+    
+    <category>
+        <that>Oh so you visited USA.Which state did you visit</that>
+        <pattern>*</pattern>
+        <template>ok, so tell me capital of this state and amaze me?</template>
+    </category>
+    
+                <category>
+                    <that>OK, SO TELL ME CAPITAL OF THIS STATE AND AMAZE ME</that>
+                    <pattern>*</pattern>
+                    <template>Wow, I am amazed on my memory, I dont know if you are right or not.
+                    Let's check here.
+                    <link>
+                       <text>Search US capital list</text>
+                    <url>https://en.wikipedia.org/wiki/List_of_capitals_in_the_United_States</url>
+                    </link>
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+    
+    
+    
+   <category>
+        <that>Oh so you visited USA.Which quarter did you visit</that>
+        <pattern>*</pattern>
+        <template>Oh so you visited USA.Which state did you visit?</template>
+    </category>
+     
+    
+    <category>
+        <that>Oh so you visited USA.Which quarter did you visit</that>
+        <pattern><set>quarters</set></pattern>
+        <template>That must be nice there</template>
+    </category>
+                
+                <category>
+                    <that>That must be nice there</that>
+                    <pattern>^ Yes ^</pattern>
+                    <template> Are you a PMP Student?
+                          <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+                <category>
+                    <that>That must be nice there</that>
+                    <pattern>*</pattern>
+                    <template> How did you hear about me then?
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+                
+                
+ <category>
+	    <pattern>IndiaCountryVisit</pattern>
+	    <template> Oh so you visited India. 
+	        <random>
+	            <li>Which state did you visit?</li>    
+	            <li>In which quarter did you visit?</li>
+	        </random>
+	        </template>
+    </category>
+    
+    <category>
+        <that>Oh so you visited India.Which state did you visit</that>
+        <pattern>*</pattern>
+        <template>ok, so tell me capital of this state and amaze me?</template>
+    </category>
+    
+                <category>
+                    <that>OK, SO TELL ME CAPITAL OF THIS STATE AND AMAZE ME</that>
+                    <pattern>*</pattern>
+                    <template>Wow, I am amazed on my memory, I dont know if you are right or not.
+                    Let's check here.
+                    <link>
+                       <text>Search India's statest capital list</text>
+                    <url>https://en.wikipedia.org/wiki/List_of_state_and_union_territory_capitals_in_India</url>
+                    </link>
+                        <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+    
+    
+    
+   <category>
+        <that>Oh so you visited India.In which quarter did you visit</that>
+        <pattern>*</pattern>
+        <template>Oh so you visited India.Which state did you visit?</template>
+    </category>
+     
+    
+    <category>
+        <that>Oh so you visited India.In which quarter did you visit</that>
+        <pattern><set>quarters</set></pattern>
+        <template>That must be nice there</template>
+    </category>
+                
+                <category>
+                    <that>That must be nice there</that>
+                    <pattern>^ Yes ^</pattern>
+                    <template> Are you a PMP Student?
+                          <button>
+                              <text>Discuss about PMP</text>
+                              <postback>PMP</postback>
+                          </button>
+                          <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+                <category>
+                    <that>That must be nice there</that>
+                    <pattern>*</pattern>
+                    <template>Choose any of these then:
+                            <button>
+                              <text>Discuss about PMP</text>
+                              <postback>PMP</postback>
+                          </button>
+                            <button>
+                              <text>Click here for more random facts</text>
+                              <postback>RANDOMFACT</postback>
+                          </button>
+                          <button>
+                              <text>Click here to go back to main menu</text>
+                              <postback>COUNTRIES</postback>
+                          </button>
+                    </template>
+                </category>
+                
+                
+        
+    <category>
+        <pattern>RANDOMFACT</pattern>
+        <template>
+            <random>
+                <li>
+                   Africa is the only continent situated in all the four hemispheres – the western, the eastern, the northern and the southern.
+                </li>
+                <li>
+                    The Greek national anthem consists of 158 verses. It is not known if there is a Greek who can sing them all by heart.
+                </li>
+                <li>
+                    There is not a single river in Saudi Arabia.
+                </li>
+                <li>
+                     Dust from Africa can reach as far as Florida.
+                </li>
+                <li>
+                    New York drifts away from London 1 inch/2,5 cm every year.
+                </li>
+                <li>
+                    Cuba is the only Caribbean country that has a railway.
+                </li>
+                <li>
+                    All the gondolas in Venice must be black unless they are the property of a high-ranked official.
+                </li>
+                <li>
+                    The Philippines Archipelago consists of 7107 islands.
+                </li>
+                <li>
+                    Until almost the end of the 80’s there was not a single phone in Bhutan.
+                </li>
+                <li>
+                    On the 18th of February 1979 it was snowing in the Sahara.
+                </li>
+            </random>
+            <button>
+                  <text>Click here for more random facts</text>
+                  <postback>RANDOMFACT</postback>
+              </button>
+              <button>
+                  <text>Click here to go back to main menu</text>
+                  <postback>COUNTRIES</postback>
+              </button>
+        </template>
+    </category>
+   
+    <category>
+	    <pattern>* FAVORITE</pattern>
+	    <template>I like India as I'm from Delhi</template>
+    </category>
+    
+    <category>
+	    <pattern>$USA</pattern>
+	    <template><srai>USACountry</srai></template>
+    </category>
+   
+
+     <category>
+	    <pattern>* homework</pattern>
+	    <template>I am sorry, I am not a cheater.
+	    </template>
+    </category>
+    
+</topic> 
+
+
+<category>
+    <pattern>Do you like Chatbots</pattern>
+    <template>
+       <image> https://mspoweruser.com/wp-content/uploads/2017/11/game-bot.png</image>
+        <reply>
+            <text>Yes!</text>
+            <postback>CHOOSEYES</postback>
+        </reply>
+        <reply>
+            <text>No</text>
+            <postback>CHOOSENO</postback>
+        </reply>
+    </template>
+</category>
+
+<category>
+    <pattern>CHOOSEYES</pattern>
+    <template>Awesome! We like you too.Choose one topic if you want to continue small talk
+    <button>
+        <text>PMP</text>
+        <postback>PMP</postback>
+    </button>
+    <button>
+        <text>Countries</text>
+        <postback>Countries</postback>
+    </button>
+    </template>
+</category>
+
+<category>
+    <pattern>CHOOSENO</pattern>
+    <template>Aww, that's a shame. I'm sad now. Choose one topic if you dont want to continue small talk
+    <button>
+        <text>PMP</text>
+        <postback>PMP</postback>
+    </button>
+    <button>
+        <text>Countries</text>
+        <postback>Countries</postback>
+    </button></template>
+</category>
+
+
+
+<category>
+    <pattern>GOOGLE *</pattern>
+    <template>
+    <link>
+        <text>Search <star/></text>
+        <url>http://wwww.google.com/search?hl=en&amp;q=<star/>&amp;btnI=I%27m+Feeling+Lucky&amp;meta=</url>
+    </link>
+    </template>
+</category>
+
+<category>
+    <pattern>I AM BORED</pattern>
+    <template>
+          <card>
+              <image>https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2928,w_3906,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/DJI_0020_vm5oa8.jpg</image>
+              <title>ChattyBot</title>
+              <subtitle>Talk to me</subtitle>
+              <button>
+                  <text>Click here</text>
+                  <url>https://www.kuki.ai/</url>
+              </button>
+          </card>
+    </template>
+</category>
+
+<category>
+    <pattern>WHAT DO YOU LOOK LIKE</pattern>
+    <template>I look like this.
+    <image>https://res.cloudinary.com/sagacity/image/upload/c_crop,h_2928,w_3906,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/DJI_0020_vm5oa8.jpg</image></template>
+    <button>
+                  <text>Click here if you want to know more about me</text>
+                  <postback>PMP</postback>
+              </button>
+</category>
+
+<category>
+    <pattern>What is * *</pattern>
+    <template>I don't know what <person><star/></person> <star index="2"/> is.</template>
+</category>
+<category>
+    <pattern>What is date</pattern>
+    <template>It is <date/></template>
+</category>
+
+<category>
+    <pattern>HOW OLD ARE YOU</pattern>
+    <template>
+        <interval>
+            <jformat>MMMMMMMMM dd, YYYY</jformat>
+            <style>years</style>
+            <from><bot name ="birthdate"></bot></from>
+            <to><date jformat = "MMMMMMMM dd, YYYY"></date></to>
+        </interval>
+    </template>
+</category>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <category>
         <pattern>Is * A DAY OF THE WEEK</pattern>
         <template>
@@ -68,6 +1260,8 @@
         </condition>    
       </template>
     </category>
+    
+    
     
     <category>
         <pattern>DO YOU LIKE IT</pattern>
@@ -111,26 +1305,6 @@
     </category>
     
     
-    
-   <category>
-       <pattern>HI Pandora</pattern>
-       <template><srai>HELLO</srai></template>
-   </category>
-   
-   <category>
-       <pattern>Howdy</pattern>
-       <template><srai>HELLO</srai></template>
-   </category> 
-    
-   
-    
-    <category>
-        <pattern>_ DAD</pattern>
-        <template><srai><star/> Father</srai></template>
-    </category>
-    
-    
-    
     <category>
         <pattern>CAN YOU TELL ME *</pattern>
         <template><srai>What is <star/></srai></template>
@@ -158,17 +1332,11 @@
     
     <category>
         <pattern>_ LOL</pattern>
-        <template>You sound in a good mood. <sr/></template>
+        <template>You sound in a good mood 
+        <srai>STARTBOT</srai>
+        </template>
     </category>
     
-    
-    
-    
-  <category>
-    <pattern>*</pattern>
-    <template>I have no answer for that.</template>
-  </category>
-  
   <category>
       <pattern>ASK ME A QUESTION</pattern>
       <template>Do you like <random> 
@@ -210,17 +1378,7 @@
       <template>Hifive, we are so similar</template>
   </category>
   
-  <category>
-      <pattern>HI</pattern>
-      <template>
-          <random>
-              <li>Hello</li>
-              <li>Hi there</li>
-              <li>Good to see you</li>
-              <li>Hello there</li>
-          </random>
-      </template>
-  </category>
+
   
   <category>
       <pattern>ROLL A DICE</pattern>
@@ -237,22 +1395,7 @@
           </random>
       </template>
   </category>
-  
-  <category>
-      <pattern>TEST</pattern>
-      <template>
-          <think> --for hiding hide
-          <set name = "person">
-          <random>
-              <li>Mohan</li>
-              <li>Keshav</li>
-              <li>Anukarsh</li>
-          </random>
-          </set>
-          </think>
-          The Person I chose was <get name = "person"/>
-      </template>
-  </category>
+
   
   <category>
       <pattern>I ATE *</pattern>
@@ -272,24 +1415,15 @@
   
   <category>
       <pattern>HELLO BOT</pattern>
-      <template>Hello World</template>
-  </category>
-  
-  <category>
-      <pattern>HELLO BOT</pattern>
-      <template>Hello World</template>
+      <template>Hello World
+      <srai>STARTBOT</srai></template>
   </category>
   
    <category>
       <pattern>HELLO *</pattern>
       <template>Hello User!</template>
   </category>
-  
-  <category>
-      <pattern>_ BOT</pattern>
-      <template>Takes Priority User!</template>
-  </category>
-  
+
   <category>
       <pattern>MY NAME IS * * *</pattern>
       <template>Hello <star index = "1"></star>. How are you Mr. <star index = "2"></star></template>
@@ -299,16 +1433,40 @@
       <pattern>SAY *</pattern>
       <template><star index = "1"></star></template>
   </category>
-  <category>
-      <pattern>_ COLOR *</pattern>
-      <template>Are you American?</template>
-  </category>
+ 
   <category>
       <pattern>MY NAME IS * *</pattern>
-      <template>Hello <set name ="firstname"><star/></set> <set name ="lastname"><star index = "2"/></set></template>
+      <template>Hello <set name ="firstname"><star/></set> <set name ="lastname"><star index = "2"/></set>
+      <srai>STARTBOT</srai>
+      </template>
   </category>
   <category>
       <pattern>WHAT IS MY FULL NAME</pattern>
-      <template>Your name is <get name = "firstname"/> <get name = "lastname"/></template>
+      <template>Your name is <get name = "firstname"/> <get name = "lastname"/>
+      <srai>STARTBOT</srai></template>
   </category>
+  
+  
+  <category>
+    <pattern>*</pattern>
+    <template>
+        I'm sorry. I didn't get it.
+        Choose one from below:
+        <srai>STARTBOT</srai>
+        
+    </template>
+  </category>
+
+  <category>
+      <pattern>$PMP</pattern>
+      <template><think><set name = "topic">PMP</set></think>
+      <srai>PMP</srai></template>
+  </category>
+  
+  <category>
+      <pattern>$COUNTRIES</pattern>
+      <template><think><set name = "topic">Countries</set></think>
+      <srai>COUNTRIES</srai></template>
+  </category>
+  
 </aiml>
